@@ -29,7 +29,7 @@ dependencies:
   geoflutterfire: ^2.0.2
   location: ^2.3.5
   google_maps_flutter: ^0.5.15
-
+  font_awesome_flutter: 8.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
