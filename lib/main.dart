@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/map.dart' as prefix0;
 import 'conversations.dart';
 import 'register.dart';
-import 'map.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,6 +15,8 @@ class MyApp extends StatelessWidget {
       home: Map(),
       routes: {
         'conversation': (BuildContext context) => Conversations(),
+        'messaging': (BuildContext context) => MessagingWidget(),
+
 
       },
 
