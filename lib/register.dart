@@ -17,6 +17,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               onFieldSubmitted:(String textInput){
                 print('$textInput');
+                Navigator.of(context).pushNamed('conversation', arguments: { 'user': textInput });
             },
               decoration: InputDecoration(
               labelText: 'Enter your username'

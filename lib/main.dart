@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Register(),
+      routes: {
+        'conversation': (BuildContext context) => Conversations(),
+
+      },
 
     );
   }
