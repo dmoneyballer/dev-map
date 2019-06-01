@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1089730176527-t2tpdjol3hclhe38qepv5ng0p66frgt8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1089730176527-t2tpdjol3hclhe38qepv5ng0p66frgt8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDOJOf9QlDL-nj6UOzegXb4T4gn2xYqYzE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1089730176527</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.devMap</string>
+	<key>PROJECT_ID</key>
+	<string>devmap-ce22f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>devmap-ce22f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1089730176527:ios:1201ca7baf2fee16</string>
+	<key>DATABASE_URL</key>
+	<string>https://devmap-ce22f.firebaseio.com</string>
+</dict>
+</plist>
