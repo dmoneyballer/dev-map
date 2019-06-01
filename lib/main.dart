@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/messaging.dart';
-
+import 'conversations.dart';
+import 'register.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,11 +8,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Conversations',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MessagingWidget(),
+      home: Register(),
+      routes: {
+        'conversation': (BuildContext context) => Conversations(),
+
+      },
+
     );
   }
 }
+
