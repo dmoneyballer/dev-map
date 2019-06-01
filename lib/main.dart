@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'conversations.dart';
 import 'register.dart';
+import 'map.dart';
+import 'messaging.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -16,7 +18,6 @@ class MyApp extends StatelessWidget {
       routes: {
         'conversation': (BuildContext context) => Conversations(),
         'messaging': (BuildContext context) => MessagingWidget(),
-
 
       },
 

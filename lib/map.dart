@@ -86,7 +86,7 @@ class FireMapState extends State<Map> {
     double lat = pos.latitude;
     double lng = pos.longitude;
 
-    // Make a referece to firestore
+    // Make a reference to firestore
     var ref = firestore.collection('locations');
     GeoFirePoint center = geo.point(latitude: lat, longitude: lng);
 
@@ -119,7 +119,6 @@ class FireMapState extends State<Map> {
     super.dispose();
   }
 
-  void _updateMarkers(List<DocumentSnapshot> documentList) {
     void _updateMarkers(List<DocumentSnapshot> documentList) {
       print(documentList);
       documentList.forEach((DocumentSnapshot document) {
@@ -130,5 +129,4 @@ class FireMapState extends State<Map> {
         mapController.moveCamera(cameraUpdate);
       });
     }
-  }
 }
