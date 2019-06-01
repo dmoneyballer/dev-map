@@ -1,4 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rxdart/rxdart.dart';
 
 class MessagingWidget extends StatefulWidget {
   final int readerId;
@@ -15,14 +20,78 @@ class MessagingWidget extends StatefulWidget {
 
 class MessagingWidgetState extends State<MessagingWidget> {
 
+  final firestore = Firestore.instance;
+
+  List<Message> messages = [];
+  var messageController = TextEditingController();
+
+  StreamSubscription subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    listenToMessages();
+    initMessages();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription?.cancel();
+  }
+
   void sendMessage() async {
-    // Send message to firestore
+    firestore.collection('messages').add({
+      'senderId': widget.readerId,
+      'recipientId': widget.partnerId,
+      'timestamp': DateTime.now().millisecondsSinceEpoch ~/ 1000,
+      'text': messageController.text,
+    });
+
+    setState(() => messageController.text = '');
+  }
+
+  void initMessages() async {
+    var query = await firestore.collection('messages').getDocuments();
+    updateMessages(query.documents);
+  }
+
+  void updateMessages(List<DocumentSnapshot> documents) async {
+    messages.clear();
+
+    dynamic senderId, recipientId, timestamp, text;
+    documents.forEach((doc) {
+      senderId = doc.data['senderId'];
+      recipientId = doc.data['recipientId'];
+      timestamp = doc.data['timestamp'];
+      text = doc.data['text'];
+
+      if (timestamp is Timestamp) timestamp = timestamp.millisecondsSinceEpoch ~/ 1000;
+
+      if ((senderId == widget.partnerId && recipientId == widget.readerId) ||
+          (senderId == widget.readerId && recipientId == widget.partnerId)) {
+        messages.add(Message(senderId, timestamp, text));
+      }
+    });
+
+    setState(() => messages.sort((a, b) => a.timestamp.compareTo(b.timestamp)));
+  }
+
+  void listenToMessages() async {
+    var ref = firestore.collection('messages');
+    subscription = ref.snapshots().listen((snapshot) {
+      updateMessages(snapshot.documents);
+      // snapshot.documentChanges.forEach((change) {
+      //   print(change.document.data);
+      // });
+    });
   }
 
   @override
   Widget build(BuildContext cxt) {
     final sideSpacing = MediaQuery.of(cxt).size.width * 0.2;
-    final messages = mockData;
+    // messages = mockData;
     return Scaffold(
       backgroundColor: Theme.of(cxt).primaryColor,
       appBar: AppBar(
@@ -67,6 +136,7 @@ class MessagingWidgetState extends State<MessagingWidget> {
                   children: [
                     Expanded(
                       child: TextField(
+                        controller: messageController,
                         decoration: InputDecoration(
                           hintText: 'Message',
                           contentPadding: EdgeInsets.only(left: 12, top: 8, bottom: 8),
@@ -166,8 +236,8 @@ class Message {
   String toString() => '{authorId: $authorId, message: $message}';
 }
 
-const int mockReaderId = 1;
-const int mockPartnerId = 2;
+const int mockReaderId = 2;
+const int mockPartnerId = 1;
 const List<Message> mockData = [
   Message(1, 1559411514, 'abc'),
   Message(2, 1559412524, 'abc'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/messaging.dart';
 import 'conversations.dart';
 import 'register.dart';
 void main() => runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Register(),
+      home: MessagingWidget(),
       routes: {
         'conversation': (BuildContext context) => Conversations(),
 
